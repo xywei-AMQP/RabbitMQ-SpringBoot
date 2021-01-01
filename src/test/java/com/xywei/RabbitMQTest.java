@@ -105,4 +105,24 @@ public class RabbitMQTest {
 		}
 	}
 
+	/**
+	 * topics模型，给全国用户发送消息
+	 * 
+	 * @Description
+	 * @Datetime 2021年1月1日 下午11:49:38<br/>
+	 */
+	@Test
+	public void topicsUser() {
+		for (int i = 1; i < 11; i++) {
+			rabbitTemplate.convertAndSend("routing-name-topics", "user.message", i + "这是全国用户消息");
+		}
+	}
+
+	@Test
+	public void topicsBeijingUser() {
+		for (int i = 1; i < 11; i++) {
+			rabbitTemplate.convertAndSend("routing-name-topics", "Beijing.user.message", i + "这是北京用户消息");
+		}
+	}
+
 }
