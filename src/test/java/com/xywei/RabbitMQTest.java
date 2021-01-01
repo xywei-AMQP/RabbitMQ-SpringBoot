@@ -78,4 +78,31 @@ public class RabbitMQTest {
 
 	}
 
+	/**
+	 * direct路由
+	 * 
+	 * @Description
+	 * @Datetime 2021年1月1日 下午11:13:29<br/>
+	 */
+	@Test
+	public void directDebug() {
+		for (int i = 0; i < 10; i++) {
+			rabbitTemplate.convertAndSend("routing-name-direct", "debug", i + "debug");
+		}
+	}
+
+	@Test
+	public void directInfo() {
+		for (int i = 0; i < 10; i++) {
+			rabbitTemplate.convertAndSend("routing-name-direct", "info", i + "info");
+		}
+	}
+
+	@Test
+	public void directError() {
+		for (int i = 0; i < 10; i++) {
+			rabbitTemplate.convertAndSend("routing-name-direct", "error", i + "error");
+		}
+	}
+
 }

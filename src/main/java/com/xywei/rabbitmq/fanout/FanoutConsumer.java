@@ -7,8 +7,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 /**
- * 发布订阅
- * 根据自己订阅的来接收消息
+ * 发布订阅 根据自己订阅的来接收消息
+ * 
  * @author future
  * @Datetime 2021年1月1日 下午10:36:32<br/>
  * @Description
@@ -16,8 +16,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class FanoutConsumer {
 
-	@RabbitListener(bindings = {
-			@QueueBinding(value = @Queue, exchange = @Exchange(name = "fanout-info", type = "fanout")) })
+	@RabbitListener(bindings = { @QueueBinding(value = @Queue, // 临时队列
+			exchange = @Exchange(name = "fanout-info", type = "fanout")// 交换机名字和类型
+			) })
 	public void receiveInfo(String message) throws Exception {
 		Thread.sleep(3000);
 		System.out.println("consumer info 收到消息： " + message);
